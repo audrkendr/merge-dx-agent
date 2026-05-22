@@ -8,12 +8,12 @@
 
 ## Why this Exists
 
-Community channels are where bugs surface first but they're also where they die in the noise. This agent bridges the gap between developer community spaces and internal engineering workflows, turning unstructured Discord messages into clean, actionable GitHub issues without any manual lift.
-It's a practical demonstration of a problem that DevRel teams feel daily: the friction between community feedback and the tools engineers actually use. Merge's Unified API makes the integration layer trivial, so the focus stays on the developer experience.
+Community channels are where bugs surface but they're also where they get lost in the noise. This tool bridges the gap between developer community spaces and internal engineering workflows, turning unstructured Discord messages into clean, actionable GitHub issues without any manual overhead.
+It eliminates the many steps required when turning community feedback into requests for software updates. Merge's Unified API makes the integration layer trivial, so the focus stays on the developer experience.
 
 ## What It Does
 
-1. Ingests messages from a monitored Discord channel, filtering for bug-relevant content
+1. Ingests messages from a monitored Discord channel, filtering for content related to issues
 2. Triages each message using Gemini's structured output, determining legitimacy, assigning urgency, and generating a concise technical summary
 3. Syncs the structured issue with Discord tracking links directly to GitHub (or any connected ticketing system) via Merge's Unified Ticketing API
 
@@ -60,7 +60,7 @@ npm install -D typescript tsx @types/node
 
 ### 2. Configure Environment
 
-Create a `.env` file in the project root:
+Create a `.env` file in the project root and add:
 
 ```bash
 # Discord Connection Config
@@ -91,7 +91,7 @@ The agent will authenticate, connect to your Discord gateway, and begin triage l
 
 ## How the Merge Integration Works
 
-This project uses [Merge's Unified Ticketing API](https://docs.merge.dev/merge-unified/ticketing/overview) to decouple the agent from any specific issue tracker. By authenticating one Linked Account in the Merge dashboard, the same agent code works against GitHub Issues, Jira, Linear, or any other supported ticketing system — with no changes to the integration logic.
+This project uses [Merge's Unified Ticketing API](https://docs.merge.dev/merge-unified/ticketing/overview) to decouple the agent from any specific issue tracker. By authenticating one Linked Account in the Merge dashboard, the same code agents works against GitHub Issues, Jira, Linear, or any other supported ticketing system with no changes to the integration logic.
 The key endpoint used is `POST /ticketing/v1/tickets`, which accepts a normalized issue schema regardless of the underlying platform.
 This pattern is directly applicable to AI agent tooling: rather than building and maintaining N integrations for N ticketing tools, a single Merge integration gives the agent access to all of them through one API surface.
 
@@ -99,22 +99,22 @@ This pattern is directly applicable to AI agent tooling: rather than building an
 
 Some directions worth exploring:
 
-- **Swap the AI layer:** The triage module is isolated — drop in OpenAI or Anthropic instead of Gemini with minimal changes (an OPENAI_API_KEY env var is already stubbed in)
-- **Add more Merge categories:** Merge supports CRM, HRIS, file storage, and more — the same pattern extends to syncing feedback to Salesforce or Notion
-- **Add a severity routing layer:** Route P0 bugs to a dedicated Slack channel or PagerDuty alert using a second integration
+- **Swap the AI layer:** The triage module is isolated add in OpenAI or Anthropic instead of Gemini with minimal changes (an OPENAI_API_KEY env var is already commented in)
+- **Add more Merge categories:** Merge supports CRM, HRIS, file storage, and more the same pattern extends to syncing feedback to Salesforce or Notion
+- **Add a severity routing layer:** Route high priority bugs to a dedicated Slack channel or PagerDuty alert using a second integration
 - **Bring to production:** Wrap the agent in a lightweight Express server for health checks and deploy to Railway or Fly.io
 
 ## Contributing
 
-Ideas, refinements to the triage prompts, or new integration targets are welcome.
+This project is open to ideas, updates to the triage prompt, or new integration targets.
 
 1. **Fork** the repo
 
-2. **Create** a Feature Branch (`git checkout -b feature/NewFeature`)
+2. **Create** a feature branch (`git checkout -b feature/NewFeature`)
 
-3. **Commit** your Changes (`git commit -m 'Add your feature`)
+3. **Commit** your changes (`git commit -m 'Add your feature`)
 
-4. **Push** to the Branch and open a pull request (`git push origin feature/NewFeature`)
+4. **Push** to the branch and open a pull request (`git push origin feature/NewFeature`)
 
 Have questions or want to discuss the integration patterns? Reach out on [X](https://x.com/Audrey_Iterates) or [LinkedIn](https://www.linkedin.com/in/akendr/).
 
