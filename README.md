@@ -1,4 +1,4 @@
-# Discord AI Bug Triage Bot
+# Merge DX Agent
 
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://semver.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-100%25-3178c6.svg)](https://www.typescriptlang.org/)
