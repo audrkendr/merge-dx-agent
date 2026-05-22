@@ -1,0 +1,20 @@
+{
+  "name": "community-bug-tracker",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "@google/genai": "^2.5.0",
+    "@mergeapi/merge-node-client": "^x.x.x",
+    "discord.js": "^14.x.x",
+    "dotenv": "^16.x.x",
+    "openai": "^4.x.x"
+  },
+  "devDependencies": {
+    "@types/node": "^20.x.x",
+    "tsx": "^4.x.x",
+    "typescript": "^5.x.x"
+  }
+}
